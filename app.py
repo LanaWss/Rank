@@ -11,59 +11,46 @@ def arg_int(name, default):
     except:
         return default
 
-@app.route("/rank")
-def rank():
+@app.route("/ficha")
+def ficha():
     # ===== DADOS =====
-    nome1 = request.args.get("nome1", "sem nome")
-    nome2 = request.args.get("nome2", "sem nome")
-    nome3 = request.args.get("nome3", "sem nome")
-    nome4 = request.args.get("nome4", "sem nome")
-    nome5 = request.args.get("nome5", "sem nome")
-   
+    nome = request.args.get("nome", "Desconhecido")
+    idade = request.args.get("idade", "?")
+    genero = request.args.get("genero", "?")
+    ocupacao = request.args.get("ocupacao", "?")
+    raca = request.args.get("raca", "?")
+    naipe = request.args.get("naipe", "?")
+    ataque = request.args.get("ataque", "0")
+    defesa = request.args.get("defesa", "0")
+    historia = request.args.get("historia", "Nenhuma")
 
-    mind1 = request.args.get("mind1", "0")
-    mind2 = request.args.get("mind2", "0")
-    mind3 = request.args.get("mind3", "0")
-    mind4 = request.args.get("mind4", "0")
-    mind5 = request.args.get("mind5", "0")
+    forca = request.args.get("forca", "0")
+    carisma = request.args.get("carisma", "0")
+    intelecto = request.args.get("intelecto", "0")
+    agilidade = request.args.get("agilidade", "0")
+    percepcao = request.args.get("percepcao", "0")
 
     # ===== POSIÇÕES (X/Y) =====
-    nome1_x, nome1_y = arg_int("nome1_x",160), arg_int("nome1_y",60)
-    nome2_x, nome2_y = arg_int("nome2_x",1000), arg_int("nome2_y",60)
-    nome3_x, nome3_y = arg_int("nome3_x",1000), arg_int("nome3_y",130)
-    nome4_x, nome4_y = arg_int("nome4_x",160), arg_int("nome4_y",130)
-    nome5_x, nome5_y = arg_int("nome5_x",80), arg_int("nome5_y",200)
-    
+    nome_x, nome_y = arg_int("nome_x",160), arg_int("nome_y",60)
+    idade_x, idade_y = arg_int("idade_x",1000), arg_int("idade_y",60)
+    genero_x, genero_y = arg_int("genero_x",1000), arg_int("genero_y",130)
+    ocupacao_x, ocupacao_y = arg_int("ocupacao_x",160), arg_int("ocupacao_y",130)
+    raca_x, raca_y = arg_int("raca_x",80), arg_int("raca_y",200)
+    naipe_x, naipe_y = arg_int("naipe_x",1000), arg_int("naipe_y",200)
+    ataque_x, ataque_y = arg_int("ataque_x",80), arg_int("ataque_y",270)
+    defesa_x, defesa_y = arg_int("defesa_x",500), arg_int("defesa_y",270)
+    historia_x, historia_y = arg_int("historia_x",130), arg_int("historia_y",350)
 
-    mind1_x, mind1_y = arg_int("mind1_x",1020), arg_int("mind1_y",650)
-    mind2_x, mind2_y = arg_int("mind2_x",860), arg_int("mind2_y",770)
-    mind3_x, mind3_y = arg_int("mind3_x",1180), arg_int("mind3_y",770)
-    mind4_x, mind4_y = arg_int("mind4_x",860), arg_int("mind4_y",900)
-    mind5_x, mind5_y = arg_int("mind5_x",1180), arg_int("mind5_y",900)
+    forca_x, forca_y = arg_int("forca_x",1020), arg_int("forca_y",650)
+    carisma_x, carisma_y = arg_int("carisma_x",860), arg_int("carisma_y",770)
+    intelecto_x, intelecto_y = arg_int("intelecto_x",1180), arg_int("intelecto_y",770)
+    agilidade_x, agilidade_y = arg_int("agilidade_x",860), arg_int("agilidade_y",900)
+    percepcao_x, percepcao_y = arg_int("percepcao_x",1180), arg_int("percepcao_y",900)
 
     # ===== AVATAR =====
-
-    
-    avatar_url = request.args.get("avatar1")
-    avatar1_x = arg_int("avatar_x",550)
-    avatar1_y = arg_int("avatar_y",390)
-
-    avatar_url = request.args.get("avatar2")
-    avatar2_x = arg_int("avatar_x",570)
-    avatar2_y = arg_int("avatar_y",410)
-
-    avatar_url = request.args.get("avatar3")
-    avatar3_x = arg_int("avatar_x",520)
-    avatar3_y = arg_int("avatar_y",360)
-
-    avatar_url = request.args.get("avatar4")
-    avatar4_x = arg_int("avatar_x",600)
-    avatar4_y = arg_int("avatar_y",440)
-
-    avatar_url = request.args.get("avatar5")
-    avatar5_x = arg_int("avatar_x",650)
-    avatar5_y = arg_int("avatar_y",490)
-
+    avatar_url = request.args.get("avatar")
+    avatar_x = arg_int("avatar_x",520)
+    avatar_y = arg_int("avatar_y",360)
     avatar_size = arg_int("avatar_size",300)
     avatar_round = request.args.get("avatar_round", "true").lower() == "true"
 
@@ -82,18 +69,21 @@ def rank():
         font_small = font
 
     # ===== TEXTOS =====
-    draw.text((nome1_x,nome1_y), nome1, fill="black", font=font)
-    draw.text((nome2_x,nome2_y), nome2, fill="black", font=font)
-    draw.text((nome3_x,nome3_y), nome3, fill="black", font=font)
-    draw.text((nome4_x,nome4_y), nome4, fill="black", font=font)
-    draw.text((nome5_x,nome5_y), nome5, fill="black", font=font)
-    
+    draw.text((nome_x,nome_y), nome, fill="black", font=font)
+    draw.text((idade_x,idade_y), idade, fill="black", font=font)
+    draw.text((genero_x,genero_y), genero, fill="black", font=font)
+    draw.text((ocupacao_x,ocupacao_y), ocupacao, fill="black", font=font)
+    draw.text((raca_x,raca_y), raca, fill="black", font=font)
+    draw.text((naipe_x,naipe_y), naipe, fill="black", font=font)
+    draw.text((ataque_x,ataque_y), ataque, fill="black", font=font)
+    draw.text((defesa_x,defesa_y), defesa, fill="black", font=font)
+    draw.text((historia_x,historia_y), historia, fill="black", font=font_small)
 
-    draw.text((mind1_x,mind1_y), mind1, fill="black", font=font_small)
-    draw.text((mind2_x,mind2_y), mind2, fill="black", font=font_small)
-    draw.text((mind3_x,mind3_y), mind3, fill="black", font=font_small)
-    draw.text((mind4_x,mind4_y), mind4, fill="black", font=font_small)
-    draw.text((mind5_x,mind5_y), mind5, fill="black", font=font_small)
+    draw.text((forca_x,forca_y), forca, fill="black", font=font_small)
+    draw.text((carisma_x,carisma_y), carisma, fill="black", font=font_small)
+    draw.text((intelecto_x,intelecto_y), intelecto, fill="black", font=font_small)
+    draw.text((agilidade_x,agilidade_y), agilidade, fill="black", font=font_small)
+    draw.text((percepcao_x,percepcao_y), percepcao, fill="black", font=font_small)
 
     # ===== AVATAR =====
     if avatar_url:
